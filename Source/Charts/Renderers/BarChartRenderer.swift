@@ -538,6 +538,7 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                     
                     var bufferIndex = 0
                     let lastIndex = ceil(Double(dataSet.entryCount) * animator.phaseX)
+                    var oldIndex = -1
 
                     for index in 0 ..< Int(lastIndex)
                     {
@@ -595,20 +596,25 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
 
                                 if dataSet.isDrawValuesEnabled
                                 {
-                                    drawValue(
-                                        context: context,
-                                        value: formatter.stringForValue(
-                                            value,
-                                            entry: e,
-                                            dataSetIndex: dataSetIndex,
-                                            viewPortHandler: viewPortHandler),
-                                        xPos: x,
-                                        yPos: y,
-                                        font: valueFont,
-                                        align: .center,
-                                        color: dataSet.valueTextColorAt(index),
-                                        anchor: CGPoint(x: 0.5, y: 0.5),
-                                        angleRadians: angleRadians)
+                                    let hideValue = dataSet.isDrawValuesOnlyFirstEnabled && index == oldIndex
+                                    
+                                    if !hideValue {
+                                        drawValue(
+                                            context: context,
+                                            value: formatter.stringForValue(
+                                                value,
+                                                entry: e,
+                                                dataSetIndex: dataSetIndex,
+                                                viewPortHandler: viewPortHandler),
+                                            xPos: x,
+                                            yPos: y,
+                                            font: valueFont,
+                                            align: .center,
+                                            color: dataSet.valueTextColorAt(index),
+                                            anchor: CGPoint(x: 0.5, y: 0.5),
+                                            angleRadians: angleRadians)
+                                    }
+                                    oldIndex = index
                                 }
 
                                 if let icon = e.icon, dataSet.isDrawIconsEnabled

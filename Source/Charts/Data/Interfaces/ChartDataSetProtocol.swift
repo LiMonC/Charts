@@ -247,6 +247,9 @@ public protocol ChartDataSetProtocol
     /// `true` if y-value drawing is enabled, `false` ifnot
     var isDrawValuesEnabled: Bool { get }
     
+    /// `true` if y-value drawing is enabled, `false` ifnot
+    var isDrawValuesOnlyFirstEnabled: Bool { get }
+    
     /// Set this to true to draw y-icons on the chart
     ///
     /// - Note: For bar and line charts: if `maxVisibleCount` is reached, no icons will be drawn even if this is enabled.

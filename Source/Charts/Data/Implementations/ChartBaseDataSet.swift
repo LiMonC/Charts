@@ -343,6 +343,15 @@ open class ChartBaseDataSet: NSObject, ChartDataSetProtocol, NSCopying
     {
         return drawValuesEnabled
     }
+    
+    /// Set this to true to draw only the first y-values on the chart.
+    open var drawValuesOnlyFirstEnabled = true
+    
+    /// `true` if y-value drawing  only first is enabled, `false` ifnot
+    open var isDrawValuesOnlyFirstEnabled: Bool
+    {
+        return drawValuesOnlyFirstEnabled
+    }
 
     /// Set this to true to draw y-icons on the chart.
     ///
